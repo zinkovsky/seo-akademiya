@@ -1,0 +1,13 @@
+{
+  "name": "seo-akademiya",
+  "owner": {
+    "name": "SEO Akademiya"
+  },
+  "plugins": [
+    {
+      "name": "seo-akademiya",
+      "source": "./plugins/seo-akademiya",
+      "description": "SEO analytics tools: Google Analytics 4, Search Console, Semrush, Serpstat via SEO Akademiya MCP server"
+    }
+  ]
+}

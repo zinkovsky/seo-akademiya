@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "seo-akademiya": {
+      "type": "http",
+      "url": "https://seo-akademiya.pp.ua/mcp",
+      "headers": {
+        "Authorization": "Bearer ${SEO_AKADEMIYA_TOKEN}"
+      }
+    }
+  }
+}
