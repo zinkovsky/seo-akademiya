@@ -18,7 +18,7 @@ Answer in the user's language. This is the master workflow: 7 phases, each cross
 
 ## Phase 1 — market position (Serpstat, ~10 cr)
 
-- `serpstat_domains_info` — visibility, keywords, traffic + dynamics (falling `keywords_dynamic` = losing semantic coverage).
+- `serpstat_domains_info` — visibility, keywords, traffic + dynamics (falling `keywords_dynamic` = losing semantic coverage). Same response carries the **AI Overview block**: `aio_keywords` (how many of our keywords trigger an AI Overview), `aio_citations` (how often WE are cited inside it), `traffic_ai` (estimated AI-affected traffic). Compute citation rate = aio_citations / aio_keywords and compare with competitors (same batch call): they get cited and we don't = losing the AI-SERP layer.
 - `serpstat_competitors` (size 10) — keep top-5 true competitors (same business, not marketplaces/wikis). Run `serpstat_domains_info` on them (one batch call, ≤10 domains) → comparison table: visibility, keywords, traffic vs each competitor.
 
 ## Phase 2 — search reality (GSC, free)
@@ -28,6 +28,7 @@ Window: last 28 full days (exclude last 2 — data lag), plus same window a year
 - by `page` (rowLimit 100): traffic concentration — if top-3 pages > 60% of clicks, flag fragility (prostotv case: one page = 40%).
 - **Page-2 reserve**: queries with impressions ≥ 500, position 11-20 → fastest wins list.
 - **CTR anomalies**: position ≤ 10, impressions ≥ 100, CTR < 60% of expected (p1 30%, p3 10%, p5 6%, p10 2.5%) → snippet problems.
+- **AI Overview effect**: GSC does not label AI Overviews separately — impressions/positions include them but clicks vanish. Suspect it when CTR fell at STABLE positions on informational queries; confirm via Serpstat `aio_keywords` (Phase 1) for those query topics.
 - **Quick cannibalization check**: `query`+`page` (rowLimit 1000), queries where 2+ pages get impressions ≥ 30; exclude `/ua/` vs `/ru/` hreflang pairs. If found → recommend the `cannibalization` skill for the full workflow.
 - by `device` (rowLimit 3): mobile vs desktop — CTR and position gap; mobile position much worse = mobile UX problem.
 - by `country` (top 5): where clicks come from; unexpected geo = wrong targeting or spam.
@@ -84,6 +85,7 @@ Cross-source findings beat single-source ones. Examples to look for:
 - Big keyword gap + strong SDR → content problem, not authority; small gap + weak SDR → authority problem.
 - Mobile position ≪ desktop (GSC device) + high bounce on mobile (GA4) → mobile UX kills rankings.
 - Rich results lost (searchAppearance ↓) + CTR ↓ at same positions → structured data broke; verify with `gsc_inspect_url`.
+- CTR ↓ at stable positions + high `aio_keywords` share (Serpstat) → **AI Overview eats the clicks**, not a snippet problem. Response: win citations (concise factual answers, schema, authority) or shift focus to commercial queries where AI Overviews are rare; being cited (`aio_citations`) is the new "position zero".
 - Links lost (backlinks_lost) on pages whose positions fell (GSC) → direct cause-effect, prioritize link recovery.
 - High organic sessions + near-zero organic revenue (GA4 e-commerce) while other channels convert → SEO lands wrong-intent traffic.
 
