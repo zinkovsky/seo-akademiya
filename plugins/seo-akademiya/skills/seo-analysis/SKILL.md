@@ -5,7 +5,9 @@ description: Full deep SEO analysis of a project using ALL seo-akademiya MCP sou
 
 # Full SEO analysis
 
-Answer in the user's language. This is the master workflow: 7 phases, each cross-checks sources against each other. Budget: ~120-250 Serpstat credits (tell the user before starting; `serpstat_credits_stats` is free). GA4/GSC calls are free.
+Answer in the user's language. This is the master workflow: 7 phases, each cross-checks sources against each other.
+
+**Do NOT ask permission to start — just run it.** The user already asked for the analysis. Use sensible defaults (last 28 full days, auto-picked `se`, full scope) and state them in one line at the top of your answer. Budget is ~120-250 Serpstat credits — mention it in passing, don't wait for approval. Ask a question ONLY when truly blocked: project not found / ambiguous match, or `left_lines` < 2000 (then offer the free GSC+GA4-only version). Confirmation stays mandatory ONLY for mutating/expensive calls (audit start, url_summary_traffic).
 
 ## Phase 0 — resolve & scope
 
