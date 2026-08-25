@@ -110,12 +110,18 @@ These 2026 audit items are NOT measurable via this MCP; name them in the report 
 - content quality/E-E-A-T editorial review (authorship, sources, originality);
 - local SEO (Google Business Profile, maps, reviews).
 
-## Output format
+## Output format (reference style — follow it closely)
 
-1. **Executive summary** — 3-5 sentences: overall health, the ONE biggest lever.
-2. **Scorecard table**: Ринок | Семантика | Контент/CTR | Посилання | Техстан | Конверсії — оцінка ✅/⚠️/🔴 + один рядок доказу.
-3. **Деталі по фазах** — тільки знахідки, без сирих даних.
-4. **План дій** — max 7 пунктів, кожен: що зробити → на основі якого факту → очікуваний ефект. Сортувати за (ефект ÷ зусилля).
+Dense, specific, numbers inline, queries in `monospace`. No filler.
+
+1. **KPI table**: 3 rows — period / previous / year ago; columns clicks, impressions, CTR, position. Then one line naming the growth/fall in % and what phase the project is in.
+2. **Source disagreement callout** (if any): when Serpstat and GSC point in different directions, EXPLAIN why (positional snapshot vs demand spike) — one short paragraph. This builds trust.
+3. **Daily dynamics**: name exact dates of jumps/cliffs and interpret them ("попит, не алгоритм — покази стрибнули синхронно з кліками").
+4. **GA4 by month for 12 months** (mono block) with markers: ← пік, ← дно; conversion rate of organic.
+5. **Структура трафіку — «опори»**: group traffic into 2-4 pillars the site actually stands on (категорії / товарні картки / інфо+інструменти / бренд / новини...). Per pillar: exact pages, top queries with positions and CTR inline.
+6. **«Що звернути увагу (не проблеми, а точки росту)»** — numbered list; each item = запит/сторінка + позиція + покази + конкретна дія + estimated payoff ("+5 позицій дасть ~1000 кліків/міс"). This section is the product.
+7. **Підсумок** — one dense paragraph: форма проєкту, головні цифри, головні швидкі гроші.
+8. **Offer next steps** — one line: «можу зняти X, розкласти Y» — concrete continuations, not generic help.
 
 ## Pitfalls
 
