@@ -70,9 +70,10 @@ Window: last 28 full days (exclude last 2 — data lag), plus same window a year
 
 ## Phase 6 — technical health
 
+**Priority order matters**: visibility blockers first (noindex, robots, https, canonical conflicts) — nothing else counts until these are clean; then indexation health; then speed/UX.
 - `gsc_list_sitemaps` — errors, last downloaded.
 - `gsc_inspect_url` on 3 URLs: home, top category, a page from the losers list — index state, canonical, mobile.
-- `serpstat_projects_list` → if a project exists: `serpstat_site_audit_list` + `serpstat_site_audit_basic_info` (free) — SDO score, critical errors; drill into top error category via `serpstat_site_audit_report`. If no project/audit → OFFER to create one (MUTATING, 1 cr/page) — never silently.
+- `serpstat_projects_list` → if a project exists: `serpstat_site_audit_list` + `serpstat_site_audit_basic_info` (free) — SDO score, critical errors; drill into top error category via `serpstat_site_audit_report`. Read `serpstat_site_audit_categories_stat` specifically for: **https** (blockers), **indexation** (noindex/canonical/redirect chains), **pagespeed** (Core Web Vitals proxy — 2026 thresholds: LCP ≤ 2.0s, INP ≤ 200ms, CLS ≤ 0.1), **meta_tags**, **content** (duplicates/thin). If no project/audit → OFFER to create one (MUTATING, 1 cr/page) — never silently.
 - `gsc_sitemap_details` on the main sitemap — submitted vs indexed URL counts gap.
 - Rank Tracker if present: `serpstat_rt_projects` → `serpstat_rt_project_regions` → `serpstat_rt_url_serp_history` (free) — exact position timeline of tracked keywords, the most precise trend data available; check `serpstat_rt_project_status` first (true = parsing, wait).
 
@@ -88,6 +89,24 @@ Cross-source findings beat single-source ones. Examples to look for:
 - CTR ↓ at stable positions + high `aio_keywords` share (Serpstat) → **AI Overview eats the clicks**, not a snippet problem. Response: win citations (concise factual answers, schema, authority) or shift focus to commercial queries where AI Overviews are rare; being cited (`aio_citations`) is the new "position zero".
 - Links lost (backlinks_lost) on pages whose positions fell (GSC) → direct cause-effect, prioritize link recovery.
 - High organic sessions + near-zero organic revenue (GA4 e-commerce) while other channels convert → SEO lands wrong-intent traffic.
+
+## E-E-A-T & AI-search readiness (proxies via our tools)
+
+E-E-A-T is not a metric, but our data gives honest proxies:
+- **Brand strength**: share of brand queries in GSC + brand-anchor share in `serpstat_backlinks_top_anchors` — organic brand demand is the strongest trust signal.
+- **Authority**: SDR vs competitors, quality (not count) of referring domains, links from topical sites.
+- **AI citations**: `aio_citations` (Phase 1) — being cited by AI Overviews IS the E-E-A-T verdict in practice.
+- **Structured data**: `searchAppearance` in GSC (earning rich results = valid schema) + `gsc_inspect_url` rich-results status.
+AEO/GEO note: content must be citable — answer-first blocks, clear authorship, dates, schema. If aio_citations ≈ 0 while competitors are cited, recommend a citability review of top pages.
+
+## Beyond our tools — say it, don't fake it
+
+These 2026 audit items are NOT measurable via this MCP; name them in the report as "потребує окремої перевірки" instead of guessing:
+- exact Core Web Vitals field data (CrUX / PageSpeed Insights) — we only have Serpstat's pagespeed category as proxy;
+- server log analysis (crawl budget, AI-crawler access: GPTBot/ClaudeBot/PerplexityBot in robots.txt);
+- schema markup validation beyond what GSC shows;
+- content quality/E-E-A-T editorial review (authorship, sources, originality);
+- local SEO (Google Business Profile, maps, reviews).
 
 ## Output format
 
